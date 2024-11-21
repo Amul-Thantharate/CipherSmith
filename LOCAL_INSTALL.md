@@ -1,6 +1,6 @@
-# 🛠️ Local Installation Guide for PassForge
+# 🛠️ Local Installation Guide for cryptopass
 
-This guide provides detailed instructions for setting up PassForge in your local development environment.
+This guide provides detailed instructions for setting up cryptopass in your local development environment.
 
 ## 📋 Prerequisites
 
@@ -14,8 +14,8 @@ This guide provides detailed instructions for setting up PassForge in your local
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Amul-Thantharate/passforge.git
-cd passforge
+git clone https://github.com/Amul-Thantharate/cryptopass.git
+cd cryptopass
 ```
 
 ### 2. Create a Virtual Environment
@@ -48,12 +48,12 @@ pip install .
 pip install -e .
 ```
 
-This installs PassForge in development mode, allowing you to modify the code and test changes immediately.
+This installs cryptopass in development mode, allowing you to modify the code and test changes immediately.
 
 ## 📁 Project Structure
 
 ```
-passforge/
+cryptopass/
 ├── app/                    # Main application code
 │   ├── __init__.py
 │   ├── main.py            # CLI and core functionality
@@ -115,14 +115,14 @@ pytest tests/test_main.py::test_function_name
 - Update `requirements.txt` for dependencies
 
 ### Application Configuration
-Default configuration location: `~/.passforge/config.yaml`
+Default configuration location: `~/.cryptopass/config.yaml`
 
 Example configuration:
 ```yaml
 default_length: 16
 include_special: true
 save_directory: "~/passwords/"
-encryption_key_file: "~/.passforge/key"
+encryption_key_file: "~/.cryptopass/key"
 ```
 
 ## 🐛 Troubleshooting
@@ -211,7 +211,7 @@ twine upload --repository testpypi dist/*
 
 ## 🤝 Getting Help
 
-- Check [GitHub Issues](https://github.com/Amul-Thantharate/passforge/issues)
+- Check [GitHub Issues](https://github.com/Amul-Thantharate/cryptopass/issues)
 - Join discussions in the repository
 - Contact maintainers: amulthantharate@gmail.com
 
