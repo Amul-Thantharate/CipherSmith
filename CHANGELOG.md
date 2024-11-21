@@ -5,22 +5,36 @@ All notable changes to CipherSmith will be documented in this file.
 ## [1.2.0] - 2024-03-19
 
 ### Added
-- Enhanced password strength analysis with detailed feedback
+- Enhanced password strength analysis with detailed feedback using zxcvbn
+- Comprehensive documentation (INSTALL.md, DEMO.md)
+- GitHub Actions workflow for automated testing and releases
+- PyPI publishing configuration
 - Verbose mode for password strength checker
 - Improved error handling in CLI commands
-- Fixed import structure for better package stability
+- Cross-platform compatibility improvements
+- Package distribution files (wheel and source)
 
 ### Changed
-- Updated password validation logic
-- Improved command-line interface feedback
+- Updated password validation logic with enhanced security
+- Improved command-line interface with rich formatting
 - Enhanced error messages and user feedback
 - Refactored database access for better reliability
+- Updated dependencies to latest stable versions
+- Streamlined installation process
+- Enhanced package structure and organization
 
 ### Fixed
-- Module import issues
-- Password strength analysis display
-- Database initialization in test environments
-- Command visibility in CLI help
+- Module import issues resolved
+- Password strength analysis display improvements
+- Package installation and dependency handling
+- Cross-platform compatibility issues
+- Documentation formatting and clarity
+
+### Security
+- Implemented secure password storage mechanisms
+- Enhanced encryption for sensitive data
+- Added comprehensive password strength indicators
+- Improved security best practices documentation
 
 ## [1.1.0] - 2024-01-20
 
