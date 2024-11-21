@@ -1,9 +1,9 @@
-# 🔐 PassForge
+# 🔐 CryptoPass
 
-[![PyPI version](https://badge.fury.io/py/passforge.svg)](https://badge.fury.io/py/passforge)
-[![Python Versions](https://img.shields.io/pypi/pyversions/passforge.svg)](https://pypi.org/project/passforge/)
+[![PyPI version](https://badge.fury.io/py/cryptopass.svg)](https://badge.fury.io/py/cryptopass)
+[![Python Versions](https://img.shields.io/pypi/pyversions/cryptopass.svg)](https://pypi.org/project/cryptopass/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Downloads](https://pepy.tech/badge/passforge)](https://pepy.tech/project/passforge)
+[![Downloads](https://pepy.tech/badge/cryptopass)](https://pepy.tech/project/cryptopass)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 A powerful and flexible command-line password generator that helps you create strong, secure passwords with ease. Built with security and usability in mind! 🚀
@@ -32,20 +32,20 @@ A powerful and flexible command-line password generator that helps you create st
 
 #### From PyPI (Recommended)
 ```bash
-pip install passforge
+pip install cryptopass
 ```
 
 #### From Source
 ```bash
-git clone https://github.com/Amul-Thantharate/passforge.git
-cd passforge
+git clone https://github.com/Amul-Thantharate/cryptopass.git
+cd cryptopass
 pip install -e .
 ```
 
 #### Development Installation
 ```bash
-git clone https://github.com/Amul-Thantharate/passforge.git
-cd passforge
+git clone https://github.com/Amul-Thantharate/cryptopass.git
+cd cryptopass
 pip install -r requirements.txt
 pip install -e .[dev]
 ```
@@ -55,50 +55,50 @@ pip install -e .[dev]
 ### Basic Password Generation
 ```bash
 # Generate a default secure password
-passforge generate
+cryptopass generate
 
 # Generate a password with specific length
-passforge generate --length 16
+cryptopass generate --length 16
 
-# Generate with custom character sets
-passforge generate --special-chars --numbers --uppercase --length 20
+# Generate a password with specific requirements
+cryptopass generate --uppercase 2 --lowercase 6 --digits 2 --special 2
+
+# Generate multiple passwords
+cryptopass generate --count 5
+
+# Save passwords to file
+cryptopass generate --save passwords.txt --count 3
 ```
 
 ### Advanced Features
 ```bash
-# Generate multiple passwords
-passforge generate --count 5
-
-# Save passwords to file
-passforge generate --save passwords.txt --count 3
-
 # Generate a memorable password
-passforge generate --memorable
+cryptopass generate --memorable
 
 # Check password strength
-passforge check "YourPassword123"
+cryptopass check "YourPassword123"
 ```
 
 ### Password Management
 ```bash
 # View password history
-passforge history
+cryptopass history
 
 # Search passwords
-passforge search "github"
+cryptopass search "github"
 
 # View statistics
-passforge stats
+cryptopass stats
 ```
 
 ## 📚 Documentation
 
-For detailed documentation, visit our [Documentation Page](https://passforge.readthedocs.io/).
+For detailed documentation, visit our [Documentation Page](https://cryptopass.readthedocs.io/).
 
 Common topics:
 - [Installation Guide](LOCAL_INSTALL.md)
 - [Usage Examples](DEMO.md)
-- [API Reference](https://passforge.readthedocs.io/api)
+- [API Reference](https://cryptopass.readthedocs.io/api)
 - [Contributing Guidelines](CONTRIBUTING.md)
 
 ## 🔧 Configuration
@@ -160,7 +160,7 @@ If you find PassForge useful, please consider:
 ## 📞 Contact
 
 - Email: amulthantharate@gmail.com
-- GitHub Issues: [Report a bug](https://github.com/Amul-Thantharate/passforge/issues)
+- GitHub Issues: [Report a bug](https://github.com/Amul-Thantharate/cryptopass/issues)
 - Twitter: [@AmulThantharate](https://twitter.com/AmulThantharate)
 
 ## ⭐ Acknowledgments
