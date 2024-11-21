@@ -1,9 +1,9 @@
-# 🔐 SecureKey
+# 🔐 securekey
 
-[![PyPI version](https://badge.fury.io/py/SecureKey.svg)](https://badge.fury.io/py/SecureKey)
-[![Python Versions](https://img.shields.io/pypi/pyversions/SecureKey.svg)](https://pypi.org/project/SecureKey/)
+[![PyPI version](https://badge.fury.io/py/securekey.svg)](https://badge.fury.io/py/securekey)
+[![Python Versions](https://img.shields.io/pypi/pyversions/securekey.svg)](https://pypi.org/project/securekey/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Downloads](https://pepy.tech/badge/SecureKey)](https://pepy.tech/project/SecureKey)
+[![Downloads](https://pepy.tech/badge/securekey)](https://pepy.tech/project/securekey)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 A powerful and flexible command-line password generator that helps you create strong, secure passwords with ease. Built with security and usability in mind! 🚀
@@ -32,20 +32,20 @@ A powerful and flexible command-line password generator that helps you create st
 
 #### From PyPI (Recommended)
 ```bash
-pip install SecureKey
+pip install securekey
 ```
 
 #### From Source
 ```bash
-git clone https://github.com/Amul-Thantharate/SecureKey.git
-cd SecureKey
+git clone https://github.com/Amul-Thantharate/securekey.git
+cd securekey
 pip install -e .
 ```
 
 #### Development Installation
 ```bash
-git clone https://github.com/Amul-Thantharate/SecureKey.git
-cd SecureKey
+git clone https://github.com/Amul-Thantharate/securekey.git
+cd securekey
 pip install -r requirements.txt
 pip install -e .[dev]
 ```
@@ -55,50 +55,50 @@ pip install -e .[dev]
 ### Basic Password Generation
 ```bash
 # Generate a default secure password
-SecureKey generate
+securekey generate
 
 # Generate a password with specific length
-SecureKey generate --length 16
+securekey generate --length 16
 
 # Generate a password with specific requirements
-SecureKey generate --uppercase 2 --lowercase 6 --digits 2 --special 2
+securekey generate --uppercase 2 --lowercase 6 --digits 2 --special 2
 
 # Generate multiple passwords
-SecureKey generate --count 5
+securekey generate --count 5
 
 # Save passwords to file
-SecureKey generate --save passwords.txt --count 3
+securekey generate --save passwords.txt --count 3
 ```
 
 ### Advanced Features
 ```bash
 # Generate a memorable password
-SecureKey generate --memorable
+securekey generate --memorable
 
 # Check password strength
-SecureKey check "YourPassword123"
+securekey check "YourPassword123"
 ```
 
 ### Password Management
 ```bash
 # View password history
-SecureKey history
+securekey history
 
 # Search passwords
-SecureKey search "github"
+securekey search "github"
 
 # View statistics
-SecureKey stats
+securekey stats
 ```
 
 ## 📚 Documentation
 
-For detailed documentation, visit our [Documentation Page](https://SecureKey.readthedocs.io/).
+For detailed documentation, visit our [Documentation Page](https://securekey.readthedocs.io/).
 
 Common topics:
 - [Installation Guide](LOCAL_INSTALL.md)
 - [Usage Examples](DEMO.md)
-- [API Reference](https://SecureKey.readthedocs.io/api)
+- [API Reference](https://securekey.readthedocs.io/api)
 - [Contributing Guidelines](CONTRIBUTING.md)
 
 ## 🔧 Configuration
@@ -160,7 +160,7 @@ If you find PassForge useful, please consider:
 ## 📞 Contact
 
 - Email: amulthantharate@gmail.com
-- GitHub Issues: [Report a bug](https://github.com/Amul-Thantharate/SecureKey/issues)
+- GitHub Issues: [Report a bug](https://github.com/Amul-Thantharate/securekey/issues)
 - Twitter: [@AmulThantharate](https://twitter.com/AmulThantharate)
 
 ## ⭐ Acknowledgments
