@@ -4,14 +4,14 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="securekey",
+    name="CipherSmith",
     version="0.1.0",
     author_email="amulthantharate@gmail.com",
     author="Amul Thantharate",
     description="A powerful and flexible command-line password generator",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Amul-Thantharate/passforge",
+    url="https://github.com/Amul-Thantharate/CipherSmith",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -35,14 +35,14 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "securekey=app.main:main",
+            "ciphersmith=app.main:main",
         ],
     },
     include_package_data=True,
     keywords="password generator cli security cryptography",
     project_urls={
-        "Bug Tracker": "https://github.com/Amul-Thantharate/passforge/issues",
-        "Documentation": "https://passforge.readthedocs.io",
-        "Source Code": "https://github.com/Amul-Thantharate/passforge",
+        "Bug Tracker": "https://github.com/Amul-Thantharate/CipherSmith/issues",
+        "Documentation": "https://CipherSmith.readthedocs.io",
+        "Source Code": "https://github.com/Amul-Thantharate/CipherSmith",
     },
 )

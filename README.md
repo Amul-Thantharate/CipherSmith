@@ -1,9 +1,9 @@
-# 🔐 SecureKey
+# 🔐 CipherSmith
 
-[![PyPI version](https://badge.fury.io/py/SecureKey.svg)](https://badge.fury.io/py/SecureKey)
-[![Python Versions](https://img.shields.io/pypi/pyversions/SecureKey.svg)](https://pypi.org/project/SecureKey/)
+[![PyPI version](https://badge.fury.io/py/CipherSmith.svg)](https://badge.fury.io/py/CipherSmith)
+[![Python Versions](https://img.shields.io/pypi/pyversions/CipherSmith.svg)](https://pypi.org/project/CipherSmith/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Downloads](https://pepy.tech/badge/SecureKey)](https://pepy.tech/project/SecureKey)
+[![Downloads](https://pepy.tech/badge/CipherSmith)](https://pepy.tech/project/CipherSmith)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 A powerful and flexible command-line password generator that helps you create strong, secure passwords with ease. Built with security and usability in mind! 🚀
@@ -32,20 +32,20 @@ A powerful and flexible command-line password generator that helps you create st
 
 #### From PyPI (Recommended)
 ```bash
-pip install SecureKey
+pip install CipherSmith
 ```
 
 #### From Source
 ```bash
-git clone https://github.com/Amul-Thantharate/SecureKey.git
-cd SecureKey
+git clone https://github.com/Amul-Thantharate/CipherSmith.git
+cd CipherSmith
 pip install -e .
 ```
 
 #### Development Installation
 ```bash
-git clone https://github.com/Amul-Thantharate/SecureKey.git
-cd SecureKey
+git clone https://github.com/Amul-Thantharate/CipherSmith.git
+cd CipherSmith
 pip install -r requirements.txt
 pip install -e .[dev]
 ```
@@ -55,57 +55,57 @@ pip install -e .[dev]
 ### Basic Password Generation
 ```bash
 # Generate a default secure password
-SecureKey generate
+CipherSmith generate
 
 # Generate a password with specific length
-SecureKey generate --length 16
+CipherSmith generate --length 16
 
 # Generate a password with specific requirements
-SecureKey generate --uppercase 2 --lowercase 6 --digits 2 --special 2
+CipherSmith generate --uppercase 2 --lowercase 6 --digits 2 --special 2
 
 # Generate multiple passwords
-SecureKey generate --count 5
+CipherSmith generate --count 5
 
 # Save passwords to file
-SecureKey generate --save passwords.txt --count 3
+CipherSmith generate --save passwords.txt --count 3
 ```
 
 ### Advanced Features
 ```bash
 # Generate a memorable password
-SecureKey generate --memorable
+CipherSmith generate --memorable
 
 # Check password strength
-SecureKey check "YourPassword123"
+CipherSmith check "YourPassword123"
 ```
 
 ### Password Management
 ```bash
 # View password history
-SecureKey history
+CipherSmith history
 
 # Search passwords
-SecureKey search "github"
+CipherSmith search "github"
 
 # View statistics
-SecureKey stats
+CipherSmith stats
 ```
 
 ## 📚 Documentation
 
-For detailed documentation, visit our [Documentation Page](https://SecureKey.readthedocs.io/).
+For detailed documentation, visit our [Documentation Page](https://CipherSmith.readthedocs.io/).
 
 Common topics:
 - [Installation Guide](LOCAL_INSTALL.md)
 - [Usage Examples](DEMO.md)
-- [API Reference](https://SecureKey.readthedocs.io/api)
+- [API Reference](https://CipherSmith.readthedocs.io/api)
 - [Contributing Guidelines](CONTRIBUTING.md)
 
 ## 🔧 Configuration
 
-PassForge can be configured using:
+CipherSmith can be configured using:
 - Command-line arguments
-- Configuration file (~/.passforge/config.yaml)
+- Configuration file (~/.CipherSmith/config.yaml)
 - Environment variables
 
 Example configuration:
@@ -113,7 +113,7 @@ Example configuration:
 default_length: 16
 include_special: true
 save_directory: "~/passwords/"
-encryption_key_file: "~/.passforge/key"
+encryption_key_file: "~/.CipherSmith/key"
 ```
 
 ## 🛡️ Security
@@ -126,7 +126,7 @@ encryption_key_file: "~/.passforge/key"
 
 ## 🤝 Contributing
 
-We love your input! We want to make contributing to PassForge as easy and transparent as possible. Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+We love your input! We want to make contributing to CipherSmith as easy and transparent as possible. Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
 
 1. Fork the repo
 2. Create your feature branch (`git checkout -b feature/amazing`)
@@ -144,7 +144,7 @@ Amul Thantharate (amulthantharate@gmail.com)
 
 ## 🌟 Support
 
-If you find PassForge useful, please consider:
+If you find CipherSmith useful, please consider:
 - Giving it a star on GitHub ⭐
 - Sharing it with friends and colleagues
 - Contributing to its development
@@ -160,7 +160,7 @@ If you find PassForge useful, please consider:
 ## 📞 Contact
 
 - Email: amulthantharate@gmail.com
-- GitHub Issues: [Report a bug](https://github.com/Amul-Thantharate/SecureKey/issues)
+- GitHub Issues: [Report a bug](https://github.com/Amul-Thantharate/CipherSmith/issues)
 - Twitter: [@AmulThantharate](https://twitter.com/AmulThantharate)
 
 ## ⭐ Acknowledgments

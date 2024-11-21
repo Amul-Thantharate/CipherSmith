@@ -14,7 +14,7 @@ This guide provides detailed instructions for setting up SecureKey in your local
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Amul-Thantharate/SecureKey.git
+git clone https://github.com/Amul-Thantharate/CipherSmith.git
 cd SecureKey
 ```
 
@@ -48,12 +48,12 @@ pip install .
 pip install -e .
 ```
 
-This installs SecureKey in development mode, allowing you to modify the code and test changes immediately.
+This installs CipherSmith in development mode, allowing you to modify the code and test changes immediately.
 
 ## 📁 Project Structure
 
 ```
-SecureKey/
+CipherSmith/
 ├── app/                    # Main application code
 │   ├── __init__.py
 │   ├── main.py            # CLI and core functionality
