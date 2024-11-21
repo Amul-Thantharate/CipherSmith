@@ -205,5 +205,3 @@ htmlcov/
 .env
 password.txt
 test_passwords.txt
-
-.github/*

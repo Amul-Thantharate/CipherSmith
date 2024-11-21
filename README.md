@@ -6,7 +6,7 @@
 [![Downloads](https://pepy.tech/badge/CipherSmith)](https://pepy.tech/project/CipherSmith)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-A powerful and flexible command-line password generator that helps you create strong, secure passwords with ease. Built with security and usability in mind! 🚀
+A powerful and flexible command-line password generator with real-time strength analysis. Built with security and usability in mind! 🚀
 
 ## ✨ Features
 
@@ -15,11 +15,14 @@ A powerful and flexible command-line password generator that helps you create st
 - 🎨 Include or exclude special characters, numbers, and uppercase letters
 - 📋 Copy generated passwords to clipboard
 - 💾 Save passwords to an encrypted file (optional)
-- 🖥️ Command-line interface for easy integration into scripts
-- 🔍 Password strength analysis
+- 🖥️ Command-line interface for easy integration
+- 🔍 Advanced password strength analysis
 - 🏷️ Tag and organize passwords
 - 📊 Password generation statistics
 - 🔒 Secure storage using SQLite with encryption
+- 📈 Real-time strength visualization
+- ⚡ Crack time estimation
+- 🎯 Pattern detection and feedback
 
 ## 🚀 Quick Start
 
@@ -30,65 +33,55 @@ A powerful and flexible command-line password generator that helps you create st
 
 ### Installation
 
-#### From PyPI (Recommended)
 ```bash
 pip install CipherSmith
 ```
 
-#### From Source
-```bash
-git clone https://github.com/Amul-Thantharate/CipherSmith.git
-cd CipherSmith
-pip install -e .
-```
+### Basic Usage
 
-#### Development Installation
 ```bash
-git clone https://github.com/Amul-Thantharate/CipherSmith.git
-cd CipherSmith
-pip install -r requirements.txt
-pip install -e .[dev]
-```
-
-## 🎮 Usage
-
-### Basic Password Generation
-```bash
-# Generate a default secure password
+# Generate a secure password
 CipherSmith generate
 
-# Generate a password with specific length
-CipherSmith generate --length 16
+# Generate and analyze password strength
+CipherSmith generate --check-strength
 
-# Generate a password with specific requirements
+# Check existing password strength
+CipherSmith check "YourPassword123"
+
+# Generate password with specific requirements
 CipherSmith generate --uppercase 2 --lowercase 6 --digits 2 --special 2
-
-# Generate multiple passwords
-CipherSmith generate --count 5
 
 # Save passwords to file
 CipherSmith generate --save passwords.txt --count 3
 ```
 
-### Advanced Features
-```bash
-# Generate a memorable password
-CipherSmith generate --memorable
+## 🔍 Password Strength Analysis
 
-# Check password strength
-CipherSmith check "YourPassword123"
+CipherSmith now includes advanced password strength analysis:
+
+- Real-time strength visualization
+- Pattern detection
+- Crack time estimation
+- Security suggestions
+- Comprehensive feedback
+
+Example output:
 ```
+Password Strength Analysis
 
-### Password Management
-```bash
-# View password history
-CipherSmith history
+Strength: Strong ██████████████████░░ 80%
 
-# Search passwords
-CipherSmith search "github"
+Estimated crack time: 3 centuries
 
-# View statistics
-CipherSmith stats
+Issues Found:
+✗ Contains common word pattern
+✗ Predictable character substitutions
+
+Suggestions:
+• Use more unique character combinations
+• Avoid common word patterns
+• Add special characters
 ```
 
 ## 📚 Documentation
@@ -99,72 +92,15 @@ Common topics:
 - [Installation Guide](LOCAL_INSTALL.md)
 - [Usage Examples](DEMO.md)
 - [API Reference](https://CipherSmith.readthedocs.io/api)
-- [Contributing Guidelines](CONTRIBUTING.md)
-
-## 🔧 Configuration
-
-CipherSmith can be configured using:
-- Command-line arguments
-- Configuration file (~/.CipherSmith/config.yaml)
-- Environment variables
-
-Example configuration:
-```yaml
-default_length: 16
-include_special: true
-save_directory: "~/passwords/"
-encryption_key_file: "~/.CipherSmith/key"
-```
-
-## 🛡️ Security
-
-- Uses Python's `secrets` module for cryptographically secure random generation
-- Implements industry-standard password security practices
-- Regular security audits and updates
-- No cloud storage - all data stays local
-- Optional file encryption using Fernet (symmetric encryption)
 
 ## 🤝 Contributing
 
-We love your input! We want to make contributing to CipherSmith as easy and transparent as possible. Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-1. Fork the repo
-2. Create your feature branch (`git checkout -b feature/amazing`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing`)
-5. Open a Pull Request
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
 
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👥 Author
+## 🌟 Star Us!
 
-Amul Thantharate (amulthantharate@gmail.com)
-
-## 🌟 Support
-
-If you find CipherSmith useful, please consider:
-- Giving it a star on GitHub ⭐
-- Sharing it with friends and colleagues
-- Contributing to its development
-- Reporting issues and suggesting features
-
-## 📊 Project Status
-
-- ✅ Actively maintained
-- 🔄 Regular updates
-- 📈 Growing community
-- 🐛 Quick bug fixes
-
-## 📞 Contact
-
-- Email: amulthantharate@gmail.com
-- GitHub Issues: [Report a bug](https://github.com/Amul-Thantharate/CipherSmith/issues)
-- Twitter: [@AmulThantharate](https://twitter.com/AmulThantharate)
-
-## ⭐ Acknowledgments
-
-- Thanks to all contributors
-- Inspired by best practices in password security
-- Built with Python's excellent cryptography libraries
+If you find CipherSmith helpful, please consider giving us a star on GitHub! It helps us know that you find the project useful.

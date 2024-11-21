@@ -1,163 +1,142 @@
-# securekey Demo Guide
+# CipherSmith Demo Guide
 
-This guide demonstrates the various features and capabilities of securekey, a powerful command-line password generator.
+This guide demonstrates the key features of CipherSmith with practical examples.
 
-## Basic Usage
+## 1. Basic Password Generation
 
-### Generate a Simple Password
-Generate a password with default settings (16 characters, including uppercase, lowercase, numbers, and special characters):
-
+Generate a secure password with default settings:
 ```bash
-$ securekey generate
-Generated password: Kj#9mP$vL2nX&qR5
+CipherSmith generate
 ```
 
-### Specify Password Length
-Create a password with a custom length:
-
+Generate multiple passwords:
 ```bash
-$ securekey generate --length 12
-Generated password: Nh#7kL$pM2nX
+CipherSmith generate --amount 5
 ```
 
-## Advanced Features
+## 2. Password Strength Analysis
 
-### Customize Character Sets
-
-Generate a password with specific character types:
-
+Check strength of an existing password:
 ```bash
-# Only lowercase and numbers
-$ securekey generate --lowercase --numbers --length 10
-Generated password: a7n9k2m4p6
-
-# Include special characters
-$ securekey generate --special-chars --length 14
-Generated password: P#k9$mN&v2@xL4
-
-# Exclude ambiguous characters
-$ securekey generate --no-ambiguous --length 12
-Generated password: Kp9mNv2xL4Rj
+CipherSmith check "MyPassword123"
 ```
 
-### Generate Multiple Passwords
-
-Create multiple passwords at once:
-
+Generate password with strength analysis:
 ```bash
-$ securekey generate --count 3 --length 10
-Generated passwords:
-1. Kj#9mP$vL2
-2. Nh#7kL$pM2
-3. Qw#5jR$tN8
+CipherSmith generate --check-strength
 ```
 
-### Save to File
+## 3. Customized Password Generation
 
-Save generated passwords to a file:
-
+Generate password with specific requirements:
 ```bash
-$ securekey generate --save passwords.txt --count 3
-Passwords saved to passwords.txt:
-1. Kj#9mP$vL2nX&qR5
-2. Nh#7kL$pM2nX@wS4
-3. Qw#5jR$tN8bV%mK3
+CipherSmith generate --length 16 --uppercase 2 --lowercase 8 --digits 3 --special 3
 ```
 
-## Password Strength Features
-
-### Generate Strong Passwords
-
-Create passwords that meet specific strength requirements:
-
+Generate memorable password:
 ```bash
-# Ensure minimum complexity
-$ securekey generate --min-special 2 --min-numbers 2 --min-uppercase 2
-Generated password: Kj#9mP$vL2nX&qR5
-
-# Generate memorable passwords
-$ securekey generate --memorable
-Generated password: CorrectHorseBatteryStaple
+CipherSmith generate --memorable
 ```
 
-### Check Password Strength
+## 4. Password Management
 
-Analyze the strength of a password:
-
+Save passwords to file:
 ```bash
-$ securekey check "MyPassword123"
-Password Strength Analysis:
-- Length: Good (12 characters)
-- Complexity: Medium
-- Time to crack: ~3 days
-Recommendation: Add special characters to increase strength
+CipherSmith generate --save passwords.txt --amount 3
 ```
 
-## Integration Examples
+View password history:
+```bash
+CipherSmith history
+```
 
-### Use in Scripts
+Search saved passwords:
+```bash
+CipherSmith search "github"
+```
 
-Python script example:
+## 5. Advanced Features
 
+### Password Strength Visualization
+
+The strength meter shows:
+- Overall strength score (0-4)
+- Visual progress bar
+- Estimated crack time
+- Pattern detection
+- Security suggestions
+
+Example output:
+```
+Password: Tr0ub4dour&3
+
+Strength Analysis:
+█████████████████░░░ 75%
+Score: 3/4 (Strong)
+
+Estimated crack time: 
+- Online attack: centuries
+- Offline attack: decades
+
+Patterns detected:
+✓ Good length
+✓ Mixed case
+✓ Numbers and symbols
+⚠️ Common substitutions (a->4)
+
+Suggestions:
+• Avoid common word patterns
+• Use more unique characters
+```
+
+### Statistics
+
+View password generation stats:
+```bash
+CipherSmith stats
+```
+
+Example output:
+```
+Password Statistics:
+- Total generated: 42
+- Average length: 14.3
+- Most common length: 16
+- Strength distribution:
+  • Very weak: 5%
+  • Weak: 15%
+  • Medium: 30%
+  • Strong: 35%
+  • Very strong: 15%
+```
+
+## 6. Integration Examples
+
+### Shell script integration:
+```bash
+#!/bin/bash
+# Generate secure password and save to clipboard
+password=$(CipherSmith generate --no-color)
+echo $password | clip
+```
+
+### Python integration:
 ```python
-import subprocess
+from CipherSmith import generate_password
 
-def generate_password():
-    result = subprocess.run(
-        ["securekey", "generate", "--length", "16"],
-        capture_output=True,
-        text=True
-    )
-    return result.stdout.strip()
-
-password = generate_password()
-print(f"Generated password: {password}")
+# Generate password with custom rules
+password = generate_password(
+    length=16,
+    uppercase=2,
+    lowercase=8,
+    digits=3,
+    special=3
+)
 ```
 
-### Batch Processing
+## Need Help?
 
-Generate passwords for multiple services:
-
-```bash
-$ securekey batch --services "github,gmail,gitlab" --prefix "dev-"
-Generated passwords:
-github: dev-Kj#9mP$vL2nX&qR5
-gmail: dev-Nh#7kL$pM2nX@wS4
-gitlab: dev-Qw#5jR$tN8bV%mK3
-```
-
-## Tips and Best Practices
-
-1. Always use sufficient length (minimum 12 characters recommended)
-2. Include a mix of character types for stronger passwords
-3. Use the `--memorable` flag for passwords you need to remember
-4. Save passwords securely using the `--save` option with encryption
-5. Use the strength checker to validate password security
-
-## Common Issues and Solutions
-
-### Issue: Command Not Found
-```bash
-$ securekey: command not found
-```
-Solution: Ensure securekey is installed correctly:
-```bash
-$ pip install --user securekey
-```
-
-### Issue: Permission Denied
-```bash
-$ securekey generate --save /root/passwords.txt
-Permission denied
-```
-Solution: Use a path where you have write permissions:
-```bash
-$ securekey generate --save ~/passwords.txt
-```
-
-## Additional Resources
-
-- GitHub repository: [https://github.com/Amul-Thantharate/securekey](https://github.com/Amul-Thantharate/securekey)
-- Bug reports: [https://github.com/Amul-Thantharate/securekey/issues](https://github.com/Amul-Thantharate/securekey/issues)
-
-For more information and updates, visit our GitHub repository or read the full documentation.
+- Run `CipherSmith --help` for command overview
+- Run `CipherSmith COMMAND --help` for command-specific help
+- Visit our [Documentation](https://CipherSmith.readthedocs.io/) for detailed guides
+- Open an [Issue](https://github.com/Amul-Thantharate/CipherSmith/issues) for support
