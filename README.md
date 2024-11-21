@@ -1,9 +1,9 @@
-# 🔐 CryptoPass
+# 🔐 SecureKey
 
-[![PyPI version](https://badge.fury.io/py/cryptopass.svg)](https://badge.fury.io/py/cryptopass)
-[![Python Versions](https://img.shields.io/pypi/pyversions/cryptopass.svg)](https://pypi.org/project/cryptopass/)
+[![PyPI version](https://badge.fury.io/py/SecureKey.svg)](https://badge.fury.io/py/SecureKey)
+[![Python Versions](https://img.shields.io/pypi/pyversions/SecureKey.svg)](https://pypi.org/project/SecureKey/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Downloads](https://pepy.tech/badge/cryptopass)](https://pepy.tech/project/cryptopass)
+[![Downloads](https://pepy.tech/badge/SecureKey)](https://pepy.tech/project/SecureKey)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 A powerful and flexible command-line password generator that helps you create strong, secure passwords with ease. Built with security and usability in mind! 🚀
@@ -32,20 +32,20 @@ A powerful and flexible command-line password generator that helps you create st
 
 #### From PyPI (Recommended)
 ```bash
-pip install cryptopass
+pip install SecureKey
 ```
 
 #### From Source
 ```bash
-git clone https://github.com/Amul-Thantharate/cryptopass.git
-cd cryptopass
+git clone https://github.com/Amul-Thantharate/SecureKey.git
+cd SecureKey
 pip install -e .
 ```
 
 #### Development Installation
 ```bash
-git clone https://github.com/Amul-Thantharate/cryptopass.git
-cd cryptopass
+git clone https://github.com/Amul-Thantharate/SecureKey.git
+cd SecureKey
 pip install -r requirements.txt
 pip install -e .[dev]
 ```
@@ -55,50 +55,50 @@ pip install -e .[dev]
 ### Basic Password Generation
 ```bash
 # Generate a default secure password
-cryptopass generate
+SecureKey generate
 
 # Generate a password with specific length
-cryptopass generate --length 16
+SecureKey generate --length 16
 
 # Generate a password with specific requirements
-cryptopass generate --uppercase 2 --lowercase 6 --digits 2 --special 2
+SecureKey generate --uppercase 2 --lowercase 6 --digits 2 --special 2
 
 # Generate multiple passwords
-cryptopass generate --count 5
+SecureKey generate --count 5
 
 # Save passwords to file
-cryptopass generate --save passwords.txt --count 3
+SecureKey generate --save passwords.txt --count 3
 ```
 
 ### Advanced Features
 ```bash
 # Generate a memorable password
-cryptopass generate --memorable
+SecureKey generate --memorable
 
 # Check password strength
-cryptopass check "YourPassword123"
+SecureKey check "YourPassword123"
 ```
 
 ### Password Management
 ```bash
 # View password history
-cryptopass history
+SecureKey history
 
 # Search passwords
-cryptopass search "github"
+SecureKey search "github"
 
 # View statistics
-cryptopass stats
+SecureKey stats
 ```
 
 ## 📚 Documentation
 
-For detailed documentation, visit our [Documentation Page](https://cryptopass.readthedocs.io/).
+For detailed documentation, visit our [Documentation Page](https://SecureKey.readthedocs.io/).
 
 Common topics:
 - [Installation Guide](LOCAL_INSTALL.md)
 - [Usage Examples](DEMO.md)
-- [API Reference](https://cryptopass.readthedocs.io/api)
+- [API Reference](https://SecureKey.readthedocs.io/api)
 - [Contributing Guidelines](CONTRIBUTING.md)
 
 ## 🔧 Configuration
@@ -160,7 +160,7 @@ If you find PassForge useful, please consider:
 ## 📞 Contact
 
 - Email: amulthantharate@gmail.com
-- GitHub Issues: [Report a bug](https://github.com/Amul-Thantharate/cryptopass/issues)
+- GitHub Issues: [Report a bug](https://github.com/Amul-Thantharate/SecureKey/issues)
 - Twitter: [@AmulThantharate](https://twitter.com/AmulThantharate)
 
 ## ⭐ Acknowledgments

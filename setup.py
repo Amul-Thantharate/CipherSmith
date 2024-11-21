@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="cryptopass",
+    name="securekey",
     version="0.1.0",
     author_email="amulthantharate@gmail.com",
     author="Amul Thantharate",
@@ -35,7 +35,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "cryptopass=app.main:main",
+            "securekey=app.main:main",
         ],
     },
     include_package_data=True,
