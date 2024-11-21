@@ -61,7 +61,6 @@ passforge/
 ├── tests/                 # Test suite
 │   └── test_main.py      # Main test file
 ├── dist/                  # Distribution files
-├── docs/                  # Documentation
 ├── .gitignore            # Git ignore patterns
 ├── CHANGELOG.md          # Version history
 ├── DEMO.md               # Usage examples
@@ -106,17 +105,6 @@ pytest tests/test_main.py
 
 # Run specific test function
 pytest tests/test_main.py::test_function_name
-```
-
-### Building Documentation
-
-```bash
-# Install documentation dependencies
-pip install -r docs/requirements.txt
-
-# Build documentation
-cd docs
-make html
 ```
 
 ## 🔧 Configuration
