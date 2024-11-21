@@ -30,6 +30,8 @@ setup(
     install_requires=[
         "typer[all]>=0.9.0",
         "colorama>=0.4.6",
+        "cryptography>=41.0.0",
+        "pyyaml>=6.0.1",
     ],
     entry_points={
         "console_scripts": [
@@ -38,4 +40,9 @@ setup(
     },
     include_package_data=True,
     keywords="password generator cli security cryptography",
+    project_urls={
+        "Bug Tracker": "https://github.com/Amul-Thantharate/passforge/issues",
+        "Documentation": "https://passforge.readthedocs.io",
+        "Source Code": "https://github.com/Amul-Thantharate/passforge",
+    },
 )
