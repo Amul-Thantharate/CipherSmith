@@ -25,28 +25,28 @@ jobs:
         name: python-package-distributions
         path: dist/
 
-  publish-to-pypi:
-    name: Publish to PyPI
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: pypi
-      url: https://pypi.org/p/CipherSmith
-    permissions:
-      id-token: write
+  # publish-to-pypi:
+  #   name: Publish to PyPI
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   environment:
+  #     name: pypi
+  #     url: https://pypi.org/p/CipherSmith
+  #   permissions:
+  #     id-token: write
 
-    steps:
-    - name: Download distribution packages
-      uses: actions/download-artifact@v4
-      with:
-        name: python-package-distributions
-        path: dist/
-    - name: Publish to PyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
+  #   steps:
+  #   - name: Download distribution packages
+  #     uses: actions/download-artifact@v4
+  #     with:
+  #       name: python-package-distributions
+  #       path: dist/
+  #   - name: Publish to PyPI
+  #     uses: pypa/gh-action-pypi-publish@release/v1
 
   create-release:
     name: Create GitHub Release
-    needs: publish-to-pypi
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -71,7 +71,25 @@ jobs:
         gh release create
         '${{ github.ref_name }}'
         --repo '${{ github.repository }}'
-        --notes "Release ${{ github.ref_name }}"
+        --notes "🎉 Release ${{ github.ref_name }} of CipherSmith 🔐
+
+🚀 New Features:
+- Initial release of CipherSmith
+- Secure password generation
+- Command-line interface
+- Password strength analysis
+
+🛡️ Security:
+- Cryptographically secure random generation
+- Local storage with encryption
+- No cloud dependencies
+
+📦 Installation:
+\`\`\`bash
+pip install CipherSmith
+\`\`\`
+
+🙏 Thank you for using CipherSmith!"
     - name: Upload artifacts
       env:
         GH_TOKEN: ${{ github.token }}
