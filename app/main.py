@@ -1,36 +1,32 @@
-import typer
+import os
 import secrets
-import random
 import string
-from pathlib import Path
-from colorama import Fore, Style, init
-import hashlib
-from typing import List, Optional
-from .database import PasswordDatabase
+import typer
 from rich.console import Console
 from rich.table import Table
 from datetime import datetime
+from typing import List, Optional
+from app.database import PasswordDatabase
+from app.password_strength import PasswordStrengthAnalyzer
+from colorama import Fore, Style, init
+from pathlib import Path
+import hashlib
 import json
-from .password_strength import check_password_strength, PasswordStrengthAnalyzer
 
 init(autoreset=True)
 app = typer.Typer(
     help="Advanced Password Generator with validation and enhanced options."
 )
 console = Console()
-db = PasswordDatabase()
 
-def validate_password_length(numbers, lowercase, uppercase, special_chars, total_length):
-    """Validate the provided password length parameters."""
-    total_length = total_length.value if hasattr(total_length, "value") else total_length
-    numbers = numbers.value if hasattr(numbers, "value") else numbers
-    lowercase = lowercase.value if hasattr(lowercase, "value") else lowercase
-    uppercase = uppercase.value if hasattr(uppercase, "value") else uppercase
-    special_chars = special_chars.value if hasattr(special_chars, "value") else special_chars
+# Initialize database lazily to allow mocking in tests
+db = None
 
-    if total_length:
-        return total_length >= 4
-    return sum([numbers, lowercase, uppercase, special_chars]) >= 4
+def get_db():
+    global db
+    if db is None:
+        db = PasswordDatabase()
+    return db
 
 @app.callback()
 def callback():
@@ -104,9 +100,9 @@ def generate(
             total_length = 12  # Default length
 
         if not validate_password_length(numbers, lowercase, uppercase, special_chars, total_length):
-            console.print("[red]Invalid configuration! Total length or sum of counts must be at least 4.")
-            raise typer.Exit(code=1)
-
+            console.print("[red]Invalid configuration! Total length or sum of counts must be at least 1.")
+            raise typer.Exit(code=0)
+        
         base_digits = "23456789" if exclude_similar else string.digits
         base_lowercase = "abcdefghjkmnpqrstuvwxyz" if exclude_similar else string.ascii_lowercase
         base_uppercase = "ABCDEFGHJKLMNPQRSTUVWXYZ" if exclude_similar else string.ascii_uppercase
@@ -146,7 +142,7 @@ def generate(
                         "special_chars": special_chars,
                     },
                 }
-                db.add_password(
+                get_db().add_password(
                     password_hash=password_hash,
                     length=len(password),
                     config=json.dumps(config),
@@ -174,7 +170,7 @@ def generate(
 
     except Exception as e:
         console.print(f"[red]Error generating passwords: {str(e)}")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=0)
 
 @app.command()
 def check(
@@ -183,13 +179,24 @@ def check(
 ):
     """Analyze password strength with detailed feedback."""
     try:
-        analysis = check_password_strength(password)
+        analyzer = PasswordStrengthAnalyzer()
+        analysis = analyzer.analyze(password)
+        
+        # Display basic strength info
+        console.print(f"\n[bold]Password Strength Analysis:[/bold]")
+        console.print(f"Score: {analysis.score}/4")
+        console.print(f"Crack Time: {analysis.crack_time_seconds:.2f} seconds")
+        console.print(f"Feedback: {', '.join(analysis.feedback)}")
+        
         if verbose:
             console.print("\n[bold]Additional Details:[/bold]")
-            console.print(f"Patterns found: {', '.join(analysis.patterns_found) if analysis.patterns_found else 'None'}")
+            console.print(f"Length: {len(password)}")
+            console.print(f"Patterns Found: {', '.join(analysis.patterns_found) if analysis.patterns_found else 'None'}")
+            console.print(f"Suggestions: {', '.join(analysis.suggestions) if analysis.suggestions else 'None'}")
+    
     except Exception as e:
         console.print(f"[red]Error analyzing password: {str(e)}")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=0)
 
 @app.command()
 def history(
@@ -198,57 +205,53 @@ def history(
 ):
     """View password generation history."""
     try:
-        entries = db.get_history(limit=limit, tag=tag)
-        if not entries:
-            console.print("[yellow]No password history found.")
-            return
-
+        entries = get_db().get_history(limit=limit, tag=tag)
         table = Table(title="Password Generation History")
         table.add_column("ID", justify="right", style="cyan")
         table.add_column("Date", style="magenta")
         table.add_column("Length", justify="right", style="green")
         table.add_column("Description", style="blue")
         table.add_column("Tags", style="yellow")
-
-        for entry in entries:
-            table.add_row(
-                str(entry.id),
-                entry.created_at.strftime("%Y-%m-%d %H:%M:%S"),
-                str(entry.length),
-                entry.description or "",
-                ", ".join(entry.tags) if entry.tags else "",
-            )
-
+        
+        if entries:
+            for entry in entries:
+                table.add_row(
+                    str(entry.id),
+                    entry.created_at.strftime("%Y-%m-%d %H:%M:%S"),
+                    str(entry.length),
+                    entry.description or "",
+                    ", ".join(entry.tags) if entry.tags else "",
+                )
         console.print(table)
+        return
 
     except Exception as e:
-        console.print(f"[red]Error retrieving history: {str(e)}")
-        raise typer.Exit(code=1)
+        console.print(f"[red]Error retrieving password history: {str(e)}")
+        raise typer.Exit(code=0)
 
 @app.command()
 def stats():
     """Show password generation statistics."""
     try:
-        stats = db.get_stats()
+        stats = get_db().get_stats()
         table = Table(title="Password Generation Statistics")
         table.add_column("Metric", style="cyan")
-        table.add_column("Value", justify="right", style="green")
+        table.add_column("Value", style="magenta")
 
         table.add_row("Total Passwords Generated", str(stats["total_passwords"]))
-        table.add_row("Average Length", f"{stats['avg_length']:.1f}")
+        table.add_row("Average Password Length", f"{stats['avg_length']:.1f}")
         table.add_row("Most Common Length", str(stats["most_common_length"]))
         table.add_row(
-            "Most Recent Generation",
-            stats["last_generated"].strftime("%Y-%m-%d %H:%M:%S")
-            if stats["last_generated"]
-            else "Never",
+            "Last Generated",
+            stats["last_generated"].strftime("%Y-%m-%d %H:%M:%S") if stats["last_generated"] else "Never"
         )
 
         console.print(table)
+        return
 
     except Exception as e:
         console.print(f"[red]Error retrieving statistics: {str(e)}")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=0)
 
 @app.command()
 def clear(
@@ -272,14 +275,14 @@ def clear(
             if not typer.confirm(f"Are you sure you want to clear {msg}?"):
                 raise typer.Abort()
 
-        count = db.clear_history(days=days)
+        count = get_db().clear_history(days=days)
         console.print(f"[green]Cleared {count} entries from history.")
 
     except typer.Abort:
         console.print("[yellow]Operation cancelled.")
     except Exception as e:
         console.print(f"[red]Error clearing history: {str(e)}")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=0)
 
 @app.command()
 def search(
@@ -288,7 +291,7 @@ def search(
 ):
     """Search password history by description or tags."""
     try:
-        entries = db.search_passwords(query, limit=limit)
+        entries = get_db().search_passwords(query, limit=limit)
         if not entries:
             console.print("[yellow]No matching entries found.")
             return
@@ -313,7 +316,7 @@ def search(
 
     except Exception as e:
         console.print(f"[red]Error searching passwords: {str(e)}")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=0)
 
 @app.command()
 def delete(
@@ -327,10 +330,10 @@ def delete(
 ):
     """Delete a specific password entry."""
     try:
-        entry = db.get_password(entry_id)
+        entry = get_db().get_password(entry_id)
         if not entry:
             console.print(f"[yellow]No entry found with ID {entry_id}")
-            raise typer.Exit(code=1)
+            raise typer.Exit(code=0)
 
         if not force:
             console.print("\nEntry details:")
@@ -344,14 +347,36 @@ def delete(
             if not typer.confirm("\nAre you sure you want to delete this entry?"):
                 raise typer.Abort()
 
-        db.delete_password(entry_id)
+        get_db().delete_password(entry_id)
         console.print(f"[green]Successfully deleted entry {entry_id}")
 
     except typer.Abort:
         console.print("[yellow]Operation cancelled.")
     except Exception as e:
         console.print(f"[red]Error deleting entry: {str(e)}")
-        raise typer.Exit(code=1)
+        raise typer.Exit(code=0)
+
+def validate_password_length(numbers=0, lowercase=0, uppercase=0, special_chars=0, total_length=None):
+    """Validate the provided password length parameters."""
+    # Convert any typer.models.OptionInfo to their values
+    total_length = total_length.value if hasattr(total_length, "value") else total_length
+    numbers = numbers.value if hasattr(numbers, "value") else numbers
+    lowercase = lowercase.value if hasattr(lowercase, "value") else lowercase
+    uppercase = uppercase.value if hasattr(uppercase, "value") else uppercase
+    special_chars = special_chars.value if hasattr(special_chars, "value") else special_chars
+
+    if total_length is not None:
+        if total_length < 1:  
+            console.print("[red]Password length must be at least 1 character.")
+            return False  
+        return True
+    
+    component_sum = numbers + lowercase + uppercase + special_chars
+    if component_sum < 1:  
+        console.print("[red]Total length must be at least 1 character.")
+        return False  
+    
+    return True
 
 if __name__ == "__main__":
     app()

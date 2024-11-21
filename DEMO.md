@@ -1,12 +1,17 @@
 # CipherSmith Demo Guide
 
-This guide demonstrates the key features of CipherSmith with practical examples.
+This guide demonstrates the key features of CipherSmith through practical examples.
 
-## 1. Basic Password Generation
+## Basic Password Generation
 
-Generate a secure password with default settings:
+Generate a simple password with default settings:
 ```bash
 CipherSmith generate
+```
+
+Generate a password with specific length:
+```bash
+CipherSmith generate --total-length 16
 ```
 
 Generate multiple passwords:
@@ -14,129 +19,157 @@ Generate multiple passwords:
 CipherSmith generate --amount 5
 ```
 
-## 2. Password Strength Analysis
+## Advanced Password Generation
+
+Generate a password with specific character requirements:
+```bash
+CipherSmith generate --uppercase 2 --lowercase 6 --numbers 2 --special-chars 2
+```
+
+Generate a password with description and tags:
+```bash
+CipherSmith generate -t 16 -d "GitHub Account" --tag "work" --tag "github"
+```
+
+Exclude similar characters:
+```bash
+CipherSmith generate --exclude-similar
+```
+
+## Password Strength Analysis
 
 Check strength of an existing password:
 ```bash
-CipherSmith check "MyPassword123"
+CipherSmith check "YourPassword123"
 ```
 
-Generate password with strength analysis:
+Get detailed strength analysis:
 ```bash
-CipherSmith generate --check-strength
+CipherSmith check "YourPassword123" --verbose
 ```
 
-## 3. Customized Password Generation
+Sample output:
+```
+Password Strength Analysis:
+Score: 3/4
+Crack Time: 3 days
+Feedback: Uses common patterns
 
-Generate password with specific requirements:
-```bash
-CipherSmith generate --length 16 --uppercase 2 --lowercase 8 --digits 3 --special 3
+Additional Details:
+Length: 14
+Patterns Found: dictionary_word, sequential_numbers
+Suggestions: Add more unique characters, avoid common sequences
 ```
 
-Generate memorable password:
-```bash
-CipherSmith generate --memorable
-```
+## Password History Management
 
-## 4. Password Management
-
-Save passwords to file:
-```bash
-CipherSmith generate --save passwords.txt --amount 3
-```
-
-View password history:
+View recent password history:
 ```bash
 CipherSmith history
 ```
 
-Search saved passwords:
+Search passwords by description or tags:
 ```bash
 CipherSmith search "github"
 ```
 
-## 5. Advanced Features
-
-### Password Strength Visualization
-
-The strength meter shows:
-- Overall strength score (0-4)
-- Visual progress bar
-- Estimated crack time
-- Pattern detection
-- Security suggestions
-
-Example output:
-```
-Password: Tr0ub4dour&3
-
-Strength Analysis:
-█████████████████░░░ 75%
-Score: 3/4 (Strong)
-
-Estimated crack time: 
-- Online attack: centuries
-- Offline attack: decades
-
-Patterns detected:
-✓ Good length
-✓ Mixed case
-✓ Numbers and symbols
-⚠️ Common substitutions (a->4)
-
-Suggestions:
-• Avoid common word patterns
-• Use more unique characters
-```
-
-### Statistics
-
-View password generation stats:
+View password generation statistics:
 ```bash
 CipherSmith stats
 ```
 
-Example output:
-```
-Password Statistics:
-- Total generated: 42
-- Average length: 14.3
-- Most common length: 16
-- Strength distribution:
-  • Very weak: 5%
-  • Weak: 15%
-  • Medium: 30%
-  • Strong: 35%
-  • Very strong: 15%
-```
-
-## 6. Integration Examples
-
-### Shell script integration:
+Clear password history:
 ```bash
-#!/bin/bash
-# Generate secure password and save to clipboard
-password=$(CipherSmith generate --no-color)
-echo $password | clip
+CipherSmith clear
 ```
 
-### Python integration:
-```python
-from CipherSmith import generate_password
-
-# Generate password with custom rules
-password = generate_password(
-    length=16,
-    uppercase=2,
-    lowercase=8,
-    digits=3,
-    special=3
-)
+Delete specific password entry:
+```bash
+CipherSmith delete [ID]
 ```
 
-## Need Help?
+## Advanced Features
 
-- Run `CipherSmith --help` for command overview
-- Run `CipherSmith COMMAND --help` for command-specific help
-- Visit our [Documentation](https://CipherSmith.readthedocs.io/) for detailed guides
-- Open an [Issue](https://github.com/Amul-Thantharate/CipherSmith/issues) for support
+### Password Generation with All Options
+```bash
+CipherSmith generate \
+    --total-length 20 \
+    --uppercase 4 \
+    --lowercase 8 \
+    --numbers 4 \
+    --special-chars 4 \
+    --exclude-similar \
+    --description "AWS Root Account" \
+    --tag "cloud" \
+    --tag "aws" \
+    --tag "important"
+```
+
+### Strength Check with Verbose Output
+```bash
+CipherSmith check "MyC0mpl3x!P@ssw0rd" --verbose
+```
+
+Sample output:
+```
+Password Strength Analysis:
+Score: 4/4
+Crack Time: 1961.20 seconds
+Feedback: Strong password!
+
+Additional Details:
+Length: 18
+Character Sets: lowercase, uppercase, numbers, special
+Patterns Found: None
+Suggestions: None
+```
+
+## Tips and Best Practices
+
+1. Always use the `--verbose` flag with the check command for detailed analysis
+2. Tag passwords for better organization
+3. Use descriptions to remember the purpose of each password
+4. Regularly review password history for weak passwords
+5. Use the statistics command to track password generation patterns
+
+## Error Handling
+
+CipherSmith provides clear error messages:
+
+Invalid length:
+```bash
+CipherSmith generate --total-length 2
+# Error: Password length must be at least 8 characters
+```
+
+Character requirements exceed length:
+```bash
+CipherSmith generate --total-length 10 --uppercase 6 --numbers 6
+# Error: Sum of character requirements exceeds total length
+```
+
+## Database Operations
+
+The password history is stored in a secure SQLite database with encryption. The database is automatically created in your user directory.
+
+To manage the database:
+- View history: `CipherSmith history`
+- Clear all entries: `CipherSmith clear`
+- Delete specific entry: `CipherSmith delete [ID]`
+- Search entries: `CipherSmith search [QUERY]`
+
+## Version Information
+
+Check CipherSmith version:
+```bash
+CipherSmith --version
+```
+
+Get help:
+```bash
+CipherSmith --help
+```
+
+For command-specific help:
+```bash
+CipherSmith [COMMAND] --help

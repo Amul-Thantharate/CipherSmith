@@ -48,18 +48,21 @@ class PasswordStrengthAnalyzer:
         """Identify common password patterns."""
         patterns = []
         
-        if re.search(r'(\w)\1{2,}', password):
-            patterns.append("repeated_chars")
-            
-        if re.search(r'(123|abc|qwerty)', password.lower()):
-            patterns.append("common_sequence")
-            
-        if re.search(r'[a-zA-Z]+\d+$', password):
-            patterns.append("letters_followed_by_numbers")
-            
-        if len(set(password)) < len(password) * 0.7:
-            patterns.append("low_character_variety")
-            
+        # Only check for patterns if the password is not already very strong
+        result = zxcvbn.zxcvbn(password)
+        if result['score'] < 4:
+            if re.search(r'(\w)\1{2,}', password):
+                patterns.append("repeated_chars")
+                
+            if re.search(r'(123|abc|qwerty)', password.lower()):
+                patterns.append("common_sequence")
+                
+            if re.search(r'[a-zA-Z]+\d+$', password):
+                patterns.append("letters_followed_by_numbers")
+                
+            if len(set(password)) < len(password) * 0.7:
+                patterns.append("low_character_variety")
+        
         return patterns
     
     def _generate_feedback(self, zxcvbn_result: Dict, patterns: List[str]) -> List[str]:

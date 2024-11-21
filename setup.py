@@ -5,30 +5,19 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="CipherSmith",
-    version="1.1.0",
+    version="1.2.0",
     author="Amul Thantharate",
     author_email="amulthantharate@gmail.com",
     description="A powerful password generator with real-time strength analysis",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Amul-Thantharate/CipherSmith",
-    project_urls={
-        "Bug Tracker": "https://github.com/Amul-Thantharate/CipherSmith/issues",
-        "Documentation": "https://CipherSmith.readthedocs.io/",
-    },
+    url="https://github.com/amulthantharate/CipherSmith",
+    packages=find_packages(),
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
-        "Intended Audience :: Developers",
-        "Topic :: Security :: Cryptography",
-        "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
-        "Programming Language :: Python :: 3.11",
+        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    package_dir={"": "app"},
-    packages=find_packages(where="app"),
     python_requires=">=3.9",
     install_requires=[
         "typer>=0.9.0",
@@ -41,7 +30,8 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "CipherSmith=main:app",
+            "CipherSmith=app.main:app",
         ],
     },
+    include_package_data=True,
 )

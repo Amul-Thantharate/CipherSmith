@@ -2,6 +2,26 @@
 
 All notable changes to CipherSmith will be documented in this file.
 
+## [1.2.0] - 2024-03-19
+
+### Added
+- Enhanced password strength analysis with detailed feedback
+- Verbose mode for password strength checker
+- Improved error handling in CLI commands
+- Fixed import structure for better package stability
+
+### Changed
+- Updated password validation logic
+- Improved command-line interface feedback
+- Enhanced error messages and user feedback
+- Refactored database access for better reliability
+
+### Fixed
+- Module import issues
+- Password strength analysis display
+- Database initialization in test environments
+- Command visibility in CLI help
+
 ## [1.1.0] - 2024-01-20
 
 ### Added
