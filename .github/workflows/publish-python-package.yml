@@ -2,6 +2,9 @@ name: Publish Python Package
 
 on:
   push:
+    branches:
+      - 'main'
+      - 'feature/**'
     tags:
       - 'v*'  
 
