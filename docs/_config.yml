@@ -50,8 +50,6 @@ nav:
     url: /CipherSmith/
   - title: API Reference
     url: /CipherSmith/api-reference/
-  - title: Changelog
-    url: /CipherSmith/changelog/
   - title: Try It!
     url: /CipherSmith/examples/
   - title: GitHub
