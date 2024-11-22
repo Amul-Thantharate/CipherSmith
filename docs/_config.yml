@@ -40,3 +40,5 @@ nav:
     url: /CipherSmith/API_REFERENCE
   - title: Changelog
     url: /CipherSmith/CHANGELOG
+  - title: Try It!
+    url: /CipherSmith/examples/

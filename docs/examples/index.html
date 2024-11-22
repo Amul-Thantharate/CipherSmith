@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CipherSmith Password Generator</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #e8e8e8;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #79b8ff;
+        }
+        input[type="number"],
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background-color: #333;
+            color: #e8e8e8;
+        }
+        .checkbox-group {
+            margin: 10px 0;
+        }
+        button {
+            background-color: #79b8ff;
+            color: #1a1a1a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #9cc7ff;
+        }
+        #password-output {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #333;
+            border-radius: 4px;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        .strength-meter {
+            margin-top: 10px;
+            height: 10px;
+            background-color: #333;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .strength-meter div {
+            height: 100%;
+            transition: width 0.3s;
+        }
+        .weak { background-color: #ff4444; }
+        .medium { background-color: #ffbb33; }
+        .strong { background-color: #00C851; }
+        .very-strong { background-color: #007E33; }
+        .copy-button {
+            background-color: #444;
+            margin-left: 10px;
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+        .feedback {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔒 CipherSmith Password Generator</h1>
+        
+        <div class="form-group">
+            <label for="length">Password Length:</label>
+            <input type="number" id="length" value="16" min="8" max="128">
+        </div>
+
+        <div class="form-group">
+            <label>Character Types:</label>
+            <div class="checkbox-group">
+                <input type="checkbox" id="lowercase" checked>
+                <label for="lowercase">Lowercase (a-z)</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="uppercase" checked>
+                <label for="uppercase">Uppercase (A-Z)</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="numbers" checked>
+                <label for="numbers">Numbers (0-9)</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="special" checked>
+                <label for="special">Special Characters (!@#$%^&*)</label>
+            </div>
+        </div>
+
+        <button onclick="generatePassword()">Generate Password</button>
+
+        <div id="password-output"></div>
+        <div class="strength-meter">
+            <div id="strength-indicator"></div>
+        </div>
+        <div id="strength-text" class="feedback"></div>
+    </div>
+
+    <script>
+        function generatePassword() {
+            const length = document.getElementById('length').value;
+            const useLower = document.getElementById('lowercase').checked;
+            const useUpper = document.getElementById('uppercase').checked;
+            const useNumbers = document.getElementById('numbers').checked;
+            const useSpecial = document.getElementById('special').checked;
+
+            let charset = '';
+            if (useLower) charset += 'abcdefghijklmnopqrstuvwxyz';
+            if (useUpper) charset += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            if (useNumbers) charset += '0123456789';
+            if (useSpecial) charset += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+            if (charset === '') {
+                alert('Please select at least one character type!');
+                return;
+            }
+
+            let password = '';
+            for (let i = 0; i < length; i++) {
+                const randomIndex = Math.floor(Math.random() * charset.length);
+                password += charset[randomIndex];
+            }
+
+            const output = document.getElementById('password-output');
+            output.innerHTML = password + '<button onclick="copyPassword()" class="copy-button">Copy</button>';
+
+            // Calculate password strength
+            let strength = 0;
+            if (useLower) strength += 26;
+            if (useUpper) strength += 26;
+            if (useNumbers) strength += 10;
+            if (useSpecial) strength += 32;
+
+            const entropy = Math.log2(strength) * length;
+            const strengthIndicator = document.getElementById('strength-indicator');
+            const strengthText = document.getElementById('strength-text');
+
+            if (entropy < 35) {
+                strengthIndicator.className = 'weak';
+                strengthIndicator.style.width = '25%';
+                strengthText.textContent = 'Weak - Not recommended for sensitive accounts';
+            } else if (entropy < 60) {
+                strengthIndicator.className = 'medium';
+                strengthIndicator.style.width = '50%';
+                strengthText.textContent = 'Medium - Good for general use';
+            } else if (entropy < 90) {
+                strengthIndicator.className = 'strong';
+                strengthIndicator.style.width = '75%';
+                strengthText.textContent = 'Strong - Suitable for important accounts';
+            } else {
+                strengthIndicator.className = 'very-strong';
+                strengthIndicator.style.width = '100%';
+                strengthText.textContent = 'Very Strong - Excellent for high-security needs';
+            }
+        }
+
+        function copyPassword() {
+            const password = document.getElementById('password-output').textContent;
+            navigator.clipboard.writeText(password).then(() => {
+                const copyButton = document.querySelector('.copy-button');
+                copyButton.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+
+        // Generate initial password
+        generatePassword();
+    </script>
+</body>
+</html>
