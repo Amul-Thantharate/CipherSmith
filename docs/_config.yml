@@ -35,10 +35,10 @@ nav:
   - title: Home
     url: /CipherSmith/
   - title: Quick Start
-    url: /CipherSmith/QUICK_START/
+    url: /CipherSmith/quick-start/
   - title: API Reference
-    url: /CipherSmith/API_REFERENCE/
+    url: /CipherSmith/api-reference/
   - title: Changelog
-    url: /CipherSmith/CHANGELOG/
+    url: /CipherSmith/changelog/
   - title: Try It!
     url: /CipherSmith/examples/

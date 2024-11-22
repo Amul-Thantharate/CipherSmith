@@ -1,7 +1,7 @@
 ---
 layout: default
 title: API Reference
-permalink: /CipherSmith/API_REFERENCE/
+permalink: /CipherSmith/api-reference/
 ---
 
 # 📚 CipherSmith API Reference
@@ -205,11 +205,3 @@ SPECIAL_CHARS = "!@#$%^&*()_+-=[]{}|;:,.<>?"
 - `2`: Database error
 - `3`: Invalid input
 - `4`: Permission error
-
-## 🔄 Version History
-
-See [CHANGELOG.md](../CHANGELOG.md) for detailed version history.
-
----
-📅 Last Updated: March 20, 2024  
-🔄 Version: 1.3.0
