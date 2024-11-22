@@ -100,16 +100,30 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
 - Write docstrings for functions and classes
 - Add comments for complex logic
 
-## Testing 🧪
+## Project Structure 📁
 
-- Write tests for new features
-- Ensure all tests pass before submitting PR
-- Maintain or improve code coverage
-- Run tests with:
-  ```bash
-  pytest
-  pytest --cov=ciphersmith  # For coverage report
-  ```
+```
+CipherSmith/
+├── .github/                # GitHub specific files
+│   └── workflows/         # GitHub Actions workflows
+├── app/                   # Main application directory
+│   ├── __init__.py
+│   ├── main.py           # Core application logic
+│   ├── database.py       # Database operations
+│   └── password_strength.py  # Password analysis
+├── docs/                  # Documentation files
+│   ├── CHANGELOG.md      # Version history
+│   ├── CONTRIBUTING.md   # Contribution guidelines
+│   ├── DEMO.md          # Usage examples
+│   └── INSTALL.md       # Installation guide
+├── .gitignore            # Git ignore rules
+├── LICENSE               # Project license
+├── MANIFEST.ini          # Package manifest
+├── README.md            # Project overview
+├── pyproject.toml       # Project configuration
+├── requirements.txt     # Project dependencies
+└── setup.py            # Package setup file
+```
 
 ## Documentation 📚
 
@@ -117,21 +131,6 @@ Enhancement suggestions are tracked as GitHub issues. When creating an enhanceme
 - Include docstrings in code
 - Update README.md if needed
 - Add examples for new functionality
-
-## Project Structure 📁
-
-```
-CipherSmith/
-├── ciphersmith/           # Main package directory
-│   ├── __init__.py
-│   ├── cli.py            # Command line interface
-│   ├── generator.py      # Password generation logic
-│   └── analyzer.py       # Password analysis logic
-├── tests/                # Test directory
-├── docs/                 # Documentation
-├── requirements.txt      # Production dependencies
-└── requirements-dev.txt  # Development dependencies
-```
 
 ## Need Help? 🤔
 
