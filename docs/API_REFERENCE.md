@@ -1,3 +1,9 @@
+---
+layout: default
+title: API Reference
+permalink: /CipherSmith/API_REFERENCE
+---
+
 # 📚 CipherSmith API Reference
 
 ## 🔧 Core Components

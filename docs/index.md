@@ -1,6 +1,7 @@
 ---
 layout: default
-title: CipherSmith Documentation
+title: Home
+permalink: /CipherSmith/
 ---
 
 {% include_relative README.md %}

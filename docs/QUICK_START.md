@@ -1,3 +1,9 @@
+---
+layout: default
+title: Quick Start Guide
+permalink: /CipherSmith/QUICK_START
+---
+
 # 🚀 CipherSmith Quick Start Guide
 
 Get up and running with CipherSmith in minutes!
