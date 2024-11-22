@@ -1,4 +1,4 @@
-remote_theme: pages-themes/cayman@v0.2.0
+remote_theme: pages-themes/midnight@v0.2.0
 plugins:
   - jekyll-remote-theme
   - jekyll-relative-links
@@ -14,12 +14,12 @@ relative_links:
   collections: true
 
 # Navigation
-navigation:
+nav:
   - title: Home
-    url: /
+    url: /CipherSmith/
   - title: Quick Start
-    url: /QUICK_START.html
+    url: /CipherSmith/QUICK_START
   - title: API Reference
-    url: /API_REFERENCE.html
+    url: /CipherSmith/API_REFERENCE
   - title: Changelog
-    url: /CHANGELOG.html
+    url: /CipherSmith/CHANGELOG

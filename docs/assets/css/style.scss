@@ -4,13 +4,48 @@
 @import "{{ site.theme }}";
 
 .site-nav {
-  margin-bottom: 2rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid #eaecef;
+  margin: 20px 0;
   
   .nav-link {
-    margin-right: 1rem;
-    color: #1e6bb8;
+    display: block;
+    margin: 10px 0;
+    color: #e8e8e8;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    
+    &:hover {
+      background-color: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+  }
+}
+
+section {
+  max-width: 800px;
+  margin: 0 auto;
+  
+  h1, h2, h3 {
+    color: #e8e8e8;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  }
+  
+  code {
+    background-color: rgba(255,255,255,0.1);
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #e8e8e8;
+  }
+  
+  pre code {
+    background-color: transparent;
+    padding: 0;
+  }
+  
+  a {
+    color: #79b8ff;
     text-decoration: none;
     
     &:hover {
@@ -19,23 +54,20 @@
   }
 }
 
-.markdown-body {
-  max-width: 900px;
-  margin: 0 auto;
-  
-  h1, h2, h3 {
-    border-bottom: 1px solid #eaecef;
-    padding-bottom: 0.3em;
+header {
+  h1 {
+    a {
+      color: #e8e8e8;
+      text-decoration: none;
+      
+      &:hover {
+        color: #fff;
+      }
+    }
   }
-  
-  code {
-    background-color: rgba(27,31,35,.05);
-    padding: 0.2em 0.4em;
-    border-radius: 3px;
-  }
-  
-  pre code {
-    background-color: transparent;
-    padding: 0;
-  }
+}
+
+.downloads {
+  background: rgba(255,255,255,0.1);
+  border-radius: 4px;
 }
