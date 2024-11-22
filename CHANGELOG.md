@@ -2,6 +2,30 @@
 
 All notable changes to CipherSmith will be documented in this file.
 
+## [1.3.0] - 2024-03-20
+
+### Added
+- New history command with improved formatting using rich tables
+- Enhanced password history display with timestamp, ID, and tags
+- Support for filtering history by tags
+- Limit option for controlling the number of history entries displayed
+- Improved error handling in history retrieval
+- Better datetime formatting in history display
+
+### Changed
+- Refactored password history database implementation
+- Enhanced database schema for better history tracking
+- Improved command-line interface for history command
+- Updated error messages with more detailed feedback
+- Better handling of JSON fields in database
+
+### Fixed
+- History command error handling and display issues
+- Database connection management
+- JSON parsing for tags and configuration
+- Datetime parsing and display formatting
+- Exit code handling for better error reporting
+
 ## [1.2.0] - 2024-03-19
 
 ### Added

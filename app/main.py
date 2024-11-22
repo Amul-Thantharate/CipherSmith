@@ -205,7 +205,7 @@ def history(
 ):
     """View password generation history."""
     try:
-        entries = get_db().get_history(limit=limit, tag=tag)
+        entries = get_db().get_password_history(limit=limit, tag=tag)
         table = Table(title="Password Generation History")
         table.add_column("ID", justify="right", style="cyan")
         table.add_column("Date", style="magenta")
@@ -215,19 +215,21 @@ def history(
         
         if entries:
             for entry in entries:
+                created_at = datetime.fromisoformat(entry['created_at'])
+                tags = json.loads(entry['tags']) if entry['tags'] else []
                 table.add_row(
-                    str(entry.id),
-                    entry.created_at.strftime("%Y-%m-%d %H:%M:%S"),
-                    str(entry.length),
-                    entry.description or "",
-                    ", ".join(entry.tags) if entry.tags else "",
+                    str(entry['id']),
+                    created_at.strftime("%Y-%m-%d %H:%M:%S"),
+                    str(entry['length']),
+                    entry['description'] or "",
+                    ", ".join(tags) if tags else "",
                 )
         console.print(table)
         return
 
     except Exception as e:
         console.print(f"[red]Error retrieving password history: {str(e)}")
-        raise typer.Exit(code=0)
+        raise typer.Exit(code=1)
 
 @app.command()
 def stats():

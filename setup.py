@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="CipherSmith",
-    version="1.2.0",
+    version="1.3.0",
     author="Amul Thantharate",
     author_email="amulthantharate@gmail.com",
     description="A powerful password generator with real-time strength analysis",
