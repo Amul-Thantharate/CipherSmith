@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Changelog
-permalink: /CipherSmith/CHANGELOG
+permalink: /CipherSmith/CHANGELOG/
 ---
 
 # 📝 Changelog

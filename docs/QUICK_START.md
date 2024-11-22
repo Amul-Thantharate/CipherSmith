@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Quick Start Guide
-permalink: /CipherSmith/QUICK_START
+permalink: /CipherSmith/QUICK_START/
 ---
 
 # 🚀 CipherSmith Quick Start Guide
