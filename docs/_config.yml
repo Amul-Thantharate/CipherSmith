@@ -1,0 +1,25 @@
+remote_theme: pages-themes/cayman@v0.2.0
+plugins:
+  - jekyll-remote-theme
+  - jekyll-relative-links
+
+title: CipherSmith Documentation
+description: A secure and powerful password management tool
+show_downloads: true
+google_analytics:
+
+# Enable relative links
+relative_links:
+  enabled: true
+  collections: true
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Quick Start
+    url: /QUICK_START.html
+  - title: API Reference
+    url: /API_REFERENCE.html
+  - title: Changelog
+    url: /CHANGELOG.html
